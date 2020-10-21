@@ -262,6 +262,10 @@ view: fact_shipment_daily {
     type: number
     sql: ${TABLE}."SHIPMENT_QTY" ;;
   }
+  dimension: shippment_amount_per_qty {
+    type: number
+    sql: ${shipment_amount}/${TABLE}.shipment_qty;;
+  }
 
   dimension: total_cogs_at_shipment {
     type: number

@@ -252,9 +252,13 @@ view: fact_booking_daily {
     type: number
     sql: ${TABLE}."TRANSACTION_LINE_ID" ;;
   }
-
+# measures
   measure: count {
     type: count
     drill_fields: []
+  }
+  measure: total_salesprice {
+    type: sum
+    sql: ${TABLE}."SALES_BOOKING_AMOUNT" ;;
   }
 }
