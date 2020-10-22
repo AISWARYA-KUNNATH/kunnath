@@ -79,10 +79,10 @@ view: fact_booking_daily {
     type: number
     sql: ${TABLE}."COST_AT_BOOKING_PER_UNIT" ;;
   }
-  dimension: Total_cost {
-    type: number
-    sql: (${TABLE}."booking_qty" * ${TABLE}."cost_at_booking_per_unit");;
-  }
+dimension: Total_cost_Booking {
+  type: number
+  sql: ${TABLE}."BOOKING_QTY" * ${TABLE}."COST_AT_BOOKING_PER_UNIT" ;;
+}
 
   dimension: cost_booking_amount {
     type: number
@@ -261,13 +261,13 @@ view: fact_booking_daily {
     type: count
     drill_fields: []
   }
-  measure: total_salesprice {
+  measure: total_sales_booking_amt {
     type: sum
     sql: ${TABLE}."SALES_BOOKING_AMOUNT" ;;
   }
 
-  measure: avg_cost_booking_amount {
+  measure: avg_sales_booking_amount {
   type: average
-  sql: ${TABLE}."COST_AT_BOOKING_PER_UNIT" ;;
+  sql: ${TABLE}."SALES_BOOKING_AMOUNT" ;;
   }
 }
