@@ -79,9 +79,9 @@ view: fact_booking_daily {
     type: number
     sql: ${TABLE}."COST_AT_BOOKING_PER_UNIT" ;;
   }
-dimension: Total_cost_Booking {
-  type: number
-  sql: ${TABLE}."BOOKING_QTY" * ${TABLE}."COST_AT_BOOKING_PER_UNIT" ;;
+  dimension: Total_cost_Booking {
+    type: number
+    sql: ${TABLE}."BOOKING_QTY" * ${TABLE}."COST_AT_BOOKING_PER_UNIT" ;;
 }
 
   dimension: cost_booking_amount {
