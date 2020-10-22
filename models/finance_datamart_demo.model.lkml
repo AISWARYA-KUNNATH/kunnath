@@ -9,9 +9,10 @@ datagroup: finance_datamart_demo_default_datagroup {
 persist_with: finance_datamart_demo_default_datagroup
 
 explore: fact_booking_daily {
+
   join: dim_account {
   type: full_outer
-  sql_on: ${fact_booking_daily.d_account_key}=${dim_account.key_id} ;;
+  sql_on: ${fact_booking_daily.d_account_key}= ${dim_account.d_account_key} ;;
   relationship: many_to_one
   }
   join: dim_customers {
@@ -31,6 +32,7 @@ explore: fact_booking_daily {
   }
 }
 explore: fact_shipment_daily {
+
   join: dim_sales_order {
   type: full_outer
   sql_on: ${dim_sales_order.d_sales_order_key}=${fact_shipment_daily.d_sales_order_key} ;;
@@ -43,7 +45,35 @@ explore: fact_shipment_daily {
   }
   join: dim_account {
   type: full_outer
-  sql: ${dim_account.d_account_key}=${fact_shipment_daily.d_account_key};;
+  sql_on: ${dim_account.d_account_key}=${fact_shipment_daily.d_account_key};;
   relationship: many_to_one
+  }
+}
+explore: fact_gljournals {
+
+  join: dim_account {
+  type: left_outer
+  relationship: one_to_many
+  sql_on: ${fact_gljournals.d_account_key}=${dim_account.d_account_key}  ;;
+  }
+  join: dim_department {
+  type: full_outer
+  relationship: one_to_many
+  sql_on: ${fact_gljournals.d_dept_key}=${dim_department.d_dept_key} ;;
+  }
+  join: dim_hierarchy {
+  type: left_outer
+  relationship: many_to_one
+  sql_on: ${fact_gljournals.d_hier_key}=${dim_hierarchy.hier_key} ;;
+  }
+  join: dim_entity {
+  type: full_outer
+  relationship: many_to_one
+  sql_on: ${dim_entity.d_entity_key} =${fact_gljournals.d_entity_key};;
+  }
+  join: dim_currencies {
+  type: full_outer
+  relationship: one_to_many
+  sql_on: ${dim_currencies.d_currency_key}=${fact_gljournals.gl_journal_key} ;;
   }
 }
