@@ -71,9 +71,5 @@ explore: fact_gljournals {
   relationship: many_to_one
   sql_on: ${dim_entity.d_entity_key} =${fact_gljournals.d_entity_key};;
   }
-  join: dim_currencies {
-  type: full_outer
-  relationship: one_to_many
-  sql_on: ${dim_currencies.d_currency_key}=${fact_gljournals.gl_journal_key} ;;
-  }
+
 }
