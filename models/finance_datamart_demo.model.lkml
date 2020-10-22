@@ -28,7 +28,7 @@ explore: fact_booking_daily {
   join: dim_hierarchy {
     type: full_outer
     sql_on: ${dim_hierarchy.hier_key}= ${fact_booking_daily.d_prod_hier_key} ;;
-    relationship: many_to_many
+    relationship: many_to_one
   }
 }
 explore: fact_shipment_daily {
