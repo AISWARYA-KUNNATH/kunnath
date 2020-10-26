@@ -14,4 +14,9 @@ explore: fact_booking_daily {
   sql_on: ${fact_booking_daily.d_account_key}=${dim_account.key_id} ;;
   relationship: many_to_one
   }
+  join: dim_customers {
+  type: full_outer
+  sql_on: ${fact_booking_daily.d_end_customer_key}=${dim_customers.d_customers_key} ;;
+  relationship: many_to_one
+  }
 }
